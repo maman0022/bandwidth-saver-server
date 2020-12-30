@@ -1,2 +1,2 @@
-drop table drives if exists;
-drop type cloud if exists;
+drop table if exists drives;
+drop type if exists cloud;
