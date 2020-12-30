@@ -36,7 +36,7 @@ Drives
         return res.status(400).json({ message: `${field} is required` })
       }
     }
-    if (req.body.kind !== 'dropbox' || req.body.kind !== 'onedrive') {
+    if (req.body.kind !== 'dropbox' && req.body.kind !== 'onedrive') {
       return res.status(400).json({ message: 'Kind must be either "dropbox" or "onedrive"' })
     }
     const driveData = {
