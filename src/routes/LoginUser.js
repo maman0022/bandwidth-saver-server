@@ -10,7 +10,8 @@ const LoginUser = express.Router()
 function sanitizeUser(user) {
   return {
     id: user.id,
-    first_name: xss(user.first_name)
+    first_name: xss(user.first_name),
+    email: xss(user.email)
   }
 }
 

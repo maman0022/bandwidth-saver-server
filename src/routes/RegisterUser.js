@@ -30,7 +30,14 @@ RegisterUser
         email,
         pw
       }
+      const fingerprintData = {
+        identifier: email,
+        max_per_hour: 5,
+        current_usage: 0,
+        next_reset: Date.now() + 1000
+      }
       await DatabaseService.addUser(req.app.get('db'), userData)
+      await DatabaseService.addFingerprint(req.app.get('db'), fingerprintData)
       res.status(201).end()
     } catch (error) {
       next(error)

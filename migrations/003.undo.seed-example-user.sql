@@ -1,1 +1,1 @@
-truncate users, drives restart identity cascade;
+truncate users, fingerprints restart identity cascade;
