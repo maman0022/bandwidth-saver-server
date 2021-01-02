@@ -11,7 +11,7 @@ function sanitizeUser(user) {
   return {
     id: user.id,
     first_name: xss(user.first_name),
-    email: xss(user.email)
+    identifier: xss(user.email)
   }
 }
 

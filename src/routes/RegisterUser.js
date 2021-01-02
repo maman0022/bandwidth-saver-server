@@ -34,7 +34,7 @@ RegisterUser
         identifier: email,
         max_per_hour: 5,
         current_usage: 0,
-        next_reset: Date.now() + 1000
+        next_reset: Date.now() + 3600000
       }
       await DatabaseService.addUser(req.app.get('db'), userData)
       await DatabaseService.addFingerprint(req.app.get('db'), fingerprintData)
