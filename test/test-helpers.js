@@ -1,9 +1,16 @@
+const bcrypt = require('bcryptjs')
+
 module.exports = {
   registerData: {
     fname: 'Bob',
     lname: 'Dole',
     email: 'bd@123.com',
     password: 'password'
+  },
+  userData: {
+    first_name: 'Bob',
+    last_name: 'Dole',
+    email: 'bd@123.com'
   },
   async createTables(db) {
     await db.transaction(trx => {
@@ -26,6 +33,7 @@ module.exports = {
     await db.schema.dropTableIfExists('users').dropTableIfExists('fingerprints')
   },
   async createUser(db) {
-    await db('users').insert(this.userData)
+    const pw = await bcrypt.hash('password', 10)
+    await db('users').insert({ ...this.userData, pw })
   }
 }
