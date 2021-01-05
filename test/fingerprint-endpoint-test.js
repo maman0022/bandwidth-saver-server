@@ -17,6 +17,8 @@ describe('Fingerprint Endpoints', () => {
 
   after('drop user and fingerprint tables', () => helpers.dropTables(db))
 
+  after('disconnect from db', () => db.destroy())
+
   it('POST /api/fingerprint returns 400 if no identfier in body', () => {
     return supertest(app)
       .post('/api/fingerprints')
@@ -58,7 +60,7 @@ describe('Fingerprint Endpoints', () => {
   it('PUT /api/fingerprint returns 200 and incremented fingerprint object', () => {
     return supertest(app)
       .put('/api/fingerprints')
-      .send({ identifier: 'test', action:'increment' })
+      .send({ identifier: 'test', action: 'increment' })
       .expect(200)
       .then(res => {
         expect(res.body).to.have.property('current_usage')
@@ -77,7 +79,7 @@ describe('Fingerprint Endpoints', () => {
   it('PUT /api/fingerprint returns 200 and same fingerprint object because before reset time', () => {
     return supertest(app)
       .put('/api/fingerprints')
-      .send({ identifier: 'test', action:'reset' })
+      .send({ identifier: 'test', action: 'reset' })
       .expect(200)
       .then(res => {
         expect(res.body).to.have.property('current_usage')

@@ -1,4 +1,10 @@
 module.exports = {
+  registerData: {
+    fname: 'Bob',
+    lname: 'Dole',
+    email: 'bd@123.com',
+    password: 'password'
+  },
   async createTables(db) {
     await db.transaction(trx => {
       return trx.schema.createTable('users', table => {
@@ -18,6 +24,8 @@ module.exports = {
   },
   async dropTables(db) {
     await db.schema.dropTableIfExists('users').dropTableIfExists('fingerprints')
-    await db.schema.dropTableIfExists('fingerprints')
+  },
+  async createUser(db) {
+    await db('users').insert(this.userData)
   }
 }
