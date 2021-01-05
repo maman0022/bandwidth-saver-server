@@ -27,6 +27,7 @@ module.exports = {
     if (t > Number(fp.next_reset)) {
       return db('fingerprints').where({ id: fp.id, identifier }).update({ next_reset: t + 3600000, current_usage: 0 }).returning('*').then(rows => rows[0])
     }
+    return fp
   },
   incrementUsage(db, identifier) {
     return db('fingerprints').where({ identifier }).increment('current_usage', 1).returning('*').then(rows => rows[0])
