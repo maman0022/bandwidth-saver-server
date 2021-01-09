@@ -27,18 +27,14 @@ LoginUser
         }
       }
       const { email, password, captchaToken } = req.body
-      try {
-        const query = `secret=${RECAPTCHA_SECRET}&response=${captchaToken}`
-        const captchaCheck = await axios.post(`https://www.google.com/recaptcha/api/siteverify?${query}`)
-        const { data } = captchaCheck
-        if (!data) {
-          return res.status(400).json({ message: 'Unable to verify CAPTCHA' })
-        }
-        if (!data.success) {
-          return res.status(400).json({ message: 'Incorrect or expired CAPTCHA. Please Refresh & Try Again.' })
-        }
-      } catch (error) {
-        next(error)
+      const query = `secret=${RECAPTCHA_SECRET}&response=${captchaToken}`
+      const captchaCheck = await axios.post(`https://www.google.com/recaptcha/api/siteverify?${query}`)
+      const { data } = captchaCheck
+      if (!data) {
+        return res.status(400).json({ message: 'Unable to verify CAPTCHA' })
+      }
+      if (!data.success) {
+        return res.status(400).json({ message: 'Incorrect or expired CAPTCHA. Please Refresh & Try Again.' })
       }
       const user = await DatabaseService.getUser(req.app.get('db'), email)
       if (!user) {
