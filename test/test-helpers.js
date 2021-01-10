@@ -5,7 +5,8 @@ module.exports = {
     fname: 'Bob',
     lname: 'Dole',
     email: 'bd@123.com',
-    password: 'password'
+    password: 'password',
+    captchaToken: 'test'
   },
   userData: {
     first_name: 'Bob',

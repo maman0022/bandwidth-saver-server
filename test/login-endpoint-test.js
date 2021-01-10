@@ -25,7 +25,8 @@ describe('Login Endpoint', () => {
   it('POST /api/login', () => {
     const postData = {
       email: 'bd@123.com',
-      password: 'password'
+      password: 'password',
+      captchaToken: 'test'
     }
     return supertest(app)
       .post('/api/login')
@@ -37,9 +38,21 @@ describe('Login Endpoint', () => {
       })
   })
 
+  it('No captcha sent - POST /api/login', () => {
+    const postData = {
+      email: 'bd@123.com',
+      password: 'password'
+    }
+    return supertest(app)
+      .post('/api/login')
+      .send(postData)
+      .expect(400, { message: `CAPTCHA Token is required` })
+  })
+
   it('No email sent - POST /api/login', () => {
     const postData = {
-      password: 'password'
+      password: 'password',
+      captchaToken: 'test'
     }
     return supertest(app)
       .post('/api/login')
@@ -49,7 +62,8 @@ describe('Login Endpoint', () => {
 
   it('No password sent - POST /api/login', () => {
     const postData = {
-      email: 'jd@123.com'
+      email: 'jd@123.com',
+      captchaToken: 'test'
     }
     return supertest(app)
       .post('/api/login')
@@ -60,7 +74,8 @@ describe('Login Endpoint', () => {
   it('Wrong password sent - POST /api/login', () => {
     const postData = {
       email: 'jd@123.com',
-      password: 'wrong'
+      password: 'wrong',
+      captchaToken: 'test'
     }
     return supertest(app)
       .post('/api/login')
@@ -71,7 +86,8 @@ describe('Login Endpoint', () => {
   it('Wrong email sent - POST /api/login', () => {
     const postData = {
       email: 'wrong@123.com',
-      password: 'password'
+      password: 'password',
+      captchaToken: 'test'
     }
     return supertest(app)
       .post('/api/login')
