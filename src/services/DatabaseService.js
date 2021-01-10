@@ -1,6 +1,6 @@
 module.exports = {
   addUser(db, userData) {
-    return db('users').insert(userData)
+    return db('users').insert(userData).returning('*').then(rows => rows[0])
   },
   getUser(db, email) {
     return db('users').where({ email }).first()
