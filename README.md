@@ -45,7 +45,7 @@ Key|Value
 ---|---
 identifier|string, required  
   
-Returns a object which contain an id, identifier, max_per_hour, current_usage, and next_reset keys.
+Returns a object which contains an id, identifier, max_per_hour, current_usage, and next_reset keys.
 
 ---  
   
@@ -54,6 +54,6 @@ Depending on the action attribute, either the quota is incremented or, if needed
 Key|Value
 ---|---
 identifier|string, required  
-action|("reset" || "increment"), required  
+action|("reset" \| "increment"), required  
   
-Returns a object which contain an id, identifier, max_per_hour, current_usage, and next_reset keys.
+Returns a object which contains an id, identifier, max_per_hour, current_usage, and next_reset keys.
