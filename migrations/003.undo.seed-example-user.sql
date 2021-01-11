@@ -1,1 +1,0 @@
-truncate users, fingerprints restart identity cascade;
