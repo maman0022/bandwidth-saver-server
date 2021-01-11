@@ -2,7 +2,8 @@
 Live Link: https://bandwidth-saver.vercel.app    
   
 ## Summary  
-This is the server side of my full-stack app. The main purpose of this back-end is to register and authenticate users. As well as to retrieve and update user quota limits which is hosted in a PostGreSQL database from the same host (Heroku).     
+This is the server side of my full-stack app. The main purpose of this back-end is to register and authenticate users. As well as to retrieve and update user quota limits which is hosted in a PostGreSQL database from the same host (Heroku). 
+      
 More information about this app and how it works can be found here - https://github.com/maman0022/bandwidth-saver-client.  
   
 ## Tech Stack  
